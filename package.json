@@ -1,0 +1,71 @@
+{
+  "name": "how-to-expand-javascript",
+  "version": "0.1.0",
+  "description": "How to expand JavaScript? Here is everything about improving JavaScript performance.",
+  "keywords": [
+    "JavaScript",
+    "WebAssembly",
+    "Rust",
+    "N-API",
+    "addon",
+    "benchmark"
+  ],
+  "author": "KevinAo22",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinAo22/how-to-expand-javascript.git"
+  },
+  "homepage": "https://github.com/KevinAo22/how-to-expand-javascript#readme",
+  "bugs": {
+    "url": "https://github.com/KevinAo22/how-to-expand-javascript/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "gypfile": true,
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "postinstall": "husky install",
+    "audit-dependencies": "audit-ci --config audit-ci.json",
+    "commit": "cz",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist/",
+    "compile": "tsc -p tsconfig.json",
+    "build": "yarn clean && yarn compile",
+    "lint": "eslint --ext .ts src/",
+    "lint:fix": "eslint --fix --ext .ts src/",
+    "prettier:fix": "prettier --write src/"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "audit-ci": "^4.1.0",
+    "benchmark": "^2.1.4",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "husky": "^6.0.0",
+    "jest": "^27.0.5",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.4"
+  }
+}
