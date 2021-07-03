@@ -36,7 +36,8 @@
     "build": "yarn clean && yarn compile",
     "lint": "eslint --ext .ts src/",
     "lint:fix": "eslint --fix --ext .ts src/",
-    "prettier:fix": "prettier --write src/"
+    "prettier:fix": "prettier --write src/",
+    "benchmark": "node ./benchmark/benchmark.js"
   },
   "config": {
     "commitizen": {
@@ -49,9 +50,13 @@
       "prettier --write"
     ]
   },
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@types/crypto-js": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "audit-ci": "^4.1.0",
