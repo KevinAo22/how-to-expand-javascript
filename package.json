@@ -52,20 +52,20 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
     "audit-ci": "^4.1.0",
     "benchmark": "^2.1.4",
     "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.29.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
-    "husky": "^6.0.0",
-    "jest": "^27.0.5",
+    "husky": "^7.0.0",
+    "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   }
 }
