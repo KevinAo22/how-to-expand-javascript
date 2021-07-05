@@ -1,5 +1,6 @@
 const Benchmark = require('benchmark');
 const nativeAES = require('../dist/aes');
+const wasmAES = require('../wasm/build/nodejs/wasm');
 
 const randomInRange = (max, min = 0) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -24,6 +25,9 @@ const smallAesDecryptSuite = new Benchmark.Suite('AES decrypt for small data: ')
 smallAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(smallEncrypted, key, iv);
+  })
+  .add('WASM', () => {
+    wasmAES.decrypt_in_aes(Buffer.from(smallEncrypted), Buffer.from(key), Buffer.from(iv));
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
