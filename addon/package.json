@@ -1,0 +1,31 @@
+{
+  "name": "addon",
+  "version": "0.0.0",
+  "napi": {
+    "name": "addon",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin"
+      ]
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@node-rs/helper": "^1.1.0"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^1.1.0"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "version": "napi version"
+  }
+}

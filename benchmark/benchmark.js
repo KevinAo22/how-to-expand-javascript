@@ -1,6 +1,7 @@
 const Benchmark = require('benchmark');
 const nativeAES = require('../dist/aes');
 const wasmAES = require('../wasm/build/nodejs/wasm');
+const addonAES = require('../addon/addon.darwin-x64.node');
 
 const randomInRange = (max, min = 0) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -35,6 +36,9 @@ smallAesDecryptSuite
   .add('WASM', () => {
     wasmAES.decrypt_in_aes(smallEncrypted, keyBuffer, ivBuffer);
   })
+  .add('Addon', () => {
+    addonAES.decryptInAes(smallEncrypted, keyBuffer, ivBuffer);
+  })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
@@ -53,6 +57,9 @@ mediumAesDecryptSuite
   .add('WASM', () => {
     wasmAES.decrypt_in_aes(mediumEncrypted, keyBuffer, ivBuffer);
   })
+  .add('Addon', () => {
+    addonAES.decryptInAes(mediumEncrypted, keyBuffer, ivBuffer);
+  })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
@@ -70,6 +77,9 @@ bigAesDecryptSuite
   })
   .add('WASM', () => {
     wasmAES.decrypt_in_aes(bigEncrypted, keyBuffer, ivBuffer);
+  })
+  .add('Addon', () => {
+    addonAES.decryptInAes(bigEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
