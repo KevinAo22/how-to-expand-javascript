@@ -14,12 +14,18 @@ const generateRandomUint8Array = (length) => {
 
 const key = '000102030405060708090a0b0c0d0e0f';
 const iv = '101112131415161718191a1b1c1d1e1f';
+const keyBuffer = Buffer.from(key, 'hex');
+const ivBuffer = Buffer.from(iv, 'hex');
+
 const smallSource = Buffer.from(generateRandomUint8Array(1024)).toString('base64');
 const smallEncrypted = nativeAES.encryptInAes(smallSource, key, iv);
+const smallEncryptedBuffer = Buffer.from(smallEncrypted, 'base64');
 const mediumSource = Buffer.from(generateRandomUint8Array(256 * 1024)).toString('base64');
 const mediumEncrypted = nativeAES.encryptInAes(mediumSource, key, iv);
+const mediumEncryptedBuffer = Buffer.from(mediumEncrypted, 'base64');
 const bigSource = Buffer.from(generateRandomUint8Array(64 * 1024 * 1024)).toString('base64');
 const bigEncrypted = nativeAES.encryptInAes(bigSource, key, iv);
+const bigEncryptedBuffer = Buffer.from(bigEncrypted, 'base64');
 
 const smallAesDecryptSuite = new Benchmark.Suite('AES decrypt for small data: ');
 smallAesDecryptSuite
@@ -27,7 +33,7 @@ smallAesDecryptSuite
     nativeAES.decryptInAes(smallEncrypted, key, iv);
   })
   .add('WASM', () => {
-    wasmAES.decrypt_in_aes(Buffer.from(smallEncrypted), Buffer.from(key), Buffer.from(iv));
+    wasmAES.decrypt_in_aes(smallEncryptedBuffer, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
@@ -44,6 +50,9 @@ mediumAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(mediumEncrypted, key, iv);
   })
+  .add('WASM', () => {
+    wasmAES.decrypt_in_aes(mediumEncryptedBuffer, keyBuffer, ivBuffer);
+  })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
@@ -58,6 +67,9 @@ const bigAesDecryptSuite = new Benchmark.Suite('AES decrypt for big data: ');
 bigAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(bigEncrypted, key, iv);
+  })
+  .add('WASM', () => {
+    wasmAES.decrypt_in_aes(bigEncryptedBuffer, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
