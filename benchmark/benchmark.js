@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const nativeAES = require('../dist/aes');
+const nativeAES = require('../native/dist/aes');
 const wasmAES = require('../wasm/build/nodejs/wasm');
 const addonAES = require('../addon/addon.darwin-x64.node');
 
