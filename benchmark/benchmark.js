@@ -19,76 +19,76 @@ const keyBuffer = Buffer.from(keyStr, 'hex');
 const ivBuffer = Buffer.from(ivStr, 'hex');
 
 const smallSource = generateRandomUint8Array(1024);
-const smallEncrypted = wasmAES.encrypt_in_aes(smallSource, keyBuffer, ivBuffer);
+const smallEncrypted = addonAES.encryptInAes(smallSource, keyBuffer, ivBuffer);
 const smallEncryptedStr = Buffer.from(smallEncrypted).toString('base64');
 const mediumSource = generateRandomUint8Array(256 * 1024);
-const mediumEncrypted = wasmAES.encrypt_in_aes(mediumSource, keyBuffer, ivBuffer);
+const mediumEncrypted = addonAES.encryptInAes(mediumSource, keyBuffer, ivBuffer);
 const mediumEncryptedStr = Buffer.from(mediumEncrypted).toString('base64');
-const bigSource = generateRandomUint8Array(64 * 1024 * 1024);
-const bigEncrypted = wasmAES.encrypt_in_aes(bigSource, keyBuffer, ivBuffer);
+const bigSource = generateRandomUint8Array(1024 * 1024);
+const bigEncrypted = addonAES.encryptInAes(bigSource, keyBuffer, ivBuffer);
 const bigEncryptedStr = Buffer.from(bigEncrypted).toString('base64');
 
-const smallAesDecryptSuite = new Benchmark.Suite('AES decrypt for small data: ');
+const smallAesDecryptSuite = new Benchmark.Suite('AES decrypt for 1KB data: ');
 smallAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(smallEncryptedStr, keyStr, ivStr);
   })
-  .add('WASM', () => {
+  .add('WebAssembly', () => {
     wasmAES.decrypt_in_aes(smallEncrypted, keyBuffer, ivBuffer);
   })
-  .add('Addon', () => {
+  .add('N-API Addon', () => {
     addonAES.decryptInAes(smallEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
   .on('cycle', (event) => {
-    console.log(`   ${String(event.target)}`);
+    console.log(`    ${event.target}`);
   })
   .on('complete', (event) => {
-    console.log(` Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
+    console.log(`  Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
   });
 
-const mediumAesDecryptSuite = new Benchmark.Suite('AES decrypt for medium data: ');
+const mediumAesDecryptSuite = new Benchmark.Suite('AES decrypt for 256KB data: ');
 mediumAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(mediumEncryptedStr, keyStr, ivStr);
   })
-  .add('WASM', () => {
+  .add('WebAssembly', () => {
     wasmAES.decrypt_in_aes(mediumEncrypted, keyBuffer, ivBuffer);
   })
-  .add('Addon', () => {
+  .add('N-API Addon', () => {
     addonAES.decryptInAes(mediumEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
   .on('cycle', (event) => {
-    console.log(`   ${String(event.target)}`);
+    console.log(`    ${event.target}`);
   })
   .on('complete', (event) => {
-    console.log(` Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
+    console.log(`  Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
   });
 
-const bigAesDecryptSuite = new Benchmark.Suite('AES decrypt for big data: ');
+const bigAesDecryptSuite = new Benchmark.Suite('AES decrypt for 1MB data: ');
 bigAesDecryptSuite
   .add('Native', () => {
     nativeAES.decryptInAes(bigEncryptedStr, keyStr, ivStr);
   })
-  .add('WASM', () => {
+  .add('WebAssembly', () => {
     wasmAES.decrypt_in_aes(bigEncrypted, keyBuffer, ivBuffer);
   })
-  .add('Addon', () => {
+  .add('N-API Addon', () => {
     addonAES.decryptInAes(bigEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
   })
   .on('cycle', (event) => {
-    console.log(`   ${String(event.target)}`);
+    console.log(`    ${event.target}`);
   })
   .on('complete', (event) => {
-    console.log(` Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
+    console.log(`  Fastest is ${event.currentTarget.filter('fastest').map('name')}`);
   });
 
 smallAesDecryptSuite.run();
