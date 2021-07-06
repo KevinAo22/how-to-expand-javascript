@@ -12,28 +12,28 @@ const generateRandomUint8Array = (length) => {
   return uint8Array;
 };
 
-const key = '000102030405060708090a0b0c0d0e0f';
-const iv = '101112131415161718191a1b1c1d1e1f';
-const keyBuffer = Buffer.from(key, 'hex');
-const ivBuffer = Buffer.from(iv, 'hex');
+const keyStr = '000102030405060708090a0b0c0d0e0f';
+const ivStr = '101112131415161718191a1b1c1d1e1f';
+const keyBuffer = Buffer.from(keyStr, 'hex');
+const ivBuffer = Buffer.from(ivStr, 'hex');
 
-const smallSource = Buffer.from(generateRandomUint8Array(1024)).toString('base64');
-const smallEncrypted = nativeAES.encryptInAes(smallSource, key, iv);
-const smallEncryptedBuffer = Buffer.from(smallEncrypted, 'base64');
-const mediumSource = Buffer.from(generateRandomUint8Array(256 * 1024)).toString('base64');
-const mediumEncrypted = nativeAES.encryptInAes(mediumSource, key, iv);
-const mediumEncryptedBuffer = Buffer.from(mediumEncrypted, 'base64');
-const bigSource = Buffer.from(generateRandomUint8Array(64 * 1024 * 1024)).toString('base64');
-const bigEncrypted = nativeAES.encryptInAes(bigSource, key, iv);
-const bigEncryptedBuffer = Buffer.from(bigEncrypted, 'base64');
+const smallSource = generateRandomUint8Array(1024);
+const smallEncrypted = wasmAES.encrypt_in_aes(smallSource, keyBuffer, ivBuffer);
+const smallEncryptedStr = Buffer.from(smallEncrypted).toString('base64');
+const mediumSource = generateRandomUint8Array(256 * 1024);
+const mediumEncrypted = wasmAES.encrypt_in_aes(mediumSource, keyBuffer, ivBuffer);
+const mediumEncryptedStr = Buffer.from(mediumEncrypted).toString('base64');
+const bigSource = generateRandomUint8Array(64 * 1024 * 1024);
+const bigEncrypted = wasmAES.encrypt_in_aes(bigSource, keyBuffer, ivBuffer);
+const bigEncryptedStr = Buffer.from(bigEncrypted).toString('base64');
 
 const smallAesDecryptSuite = new Benchmark.Suite('AES decrypt for small data: ');
 smallAesDecryptSuite
   .add('Native', () => {
-    nativeAES.decryptInAes(smallEncrypted, key, iv);
+    nativeAES.decryptInAes(smallEncryptedStr, keyStr, ivStr);
   })
   .add('WASM', () => {
-    wasmAES.decrypt_in_aes(smallEncryptedBuffer, keyBuffer, ivBuffer);
+    wasmAES.decrypt_in_aes(smallEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
@@ -48,10 +48,10 @@ smallAesDecryptSuite
 const mediumAesDecryptSuite = new Benchmark.Suite('AES decrypt for medium data: ');
 mediumAesDecryptSuite
   .add('Native', () => {
-    nativeAES.decryptInAes(mediumEncrypted, key, iv);
+    nativeAES.decryptInAes(mediumEncryptedStr, keyStr, ivStr);
   })
   .add('WASM', () => {
-    wasmAES.decrypt_in_aes(mediumEncryptedBuffer, keyBuffer, ivBuffer);
+    wasmAES.decrypt_in_aes(mediumEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
@@ -66,10 +66,10 @@ mediumAesDecryptSuite
 const bigAesDecryptSuite = new Benchmark.Suite('AES decrypt for big data: ');
 bigAesDecryptSuite
   .add('Native', () => {
-    nativeAES.decryptInAes(bigEncrypted, key, iv);
+    nativeAES.decryptInAes(bigEncryptedStr, keyStr, ivStr);
   })
   .add('WASM', () => {
-    wasmAES.decrypt_in_aes(bigEncryptedBuffer, keyBuffer, ivBuffer);
+    wasmAES.decrypt_in_aes(bigEncrypted, keyBuffer, ivBuffer);
   })
   .on('start', (event) => {
     console.log(event.currentTarget.name);
