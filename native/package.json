@@ -1,0 +1,21 @@
+{
+  "name": "native",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist/",
+    "compile": "tsc -p tsconfig.json",
+    "build": "yarn clean && yarn compile"
+  },
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "wasm-pack": "^0.10.0"
+  }
+}

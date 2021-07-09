@@ -1,0 +1,14 @@
+{
+  "name": "wasm",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "wasm-pack build --out-dir build/nodejs --target nodejs"
+  },
+  "devDependencies": {
+    "wasm-pack": "^0.10.0"
+  }
+}
