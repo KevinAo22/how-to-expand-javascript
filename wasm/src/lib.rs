@@ -26,3 +26,9 @@ pub fn decrypt_in_aes(source: &[u8], key: &[u8], iv: &[u8]) -> Vec<u8> {
   let cipher = Aes128Cbc::new_from_slices(&key, &iv).unwrap();
   return cipher.decrypt_vec(source).unwrap();
 }
+
+#[wasm_bindgen]
+pub fn decrypt_in_aes_in_place(source: &mut [u8], key: &[u8], iv: &[u8]) {
+  let cipher = Aes128Cbc::new_from_slices(&key, &iv).unwrap();
+  cipher.decrypt(source).unwrap();
+}
