@@ -1,4 +1,4 @@
-const { loadBinding } = require('@node-rs/helper')
+const { loadBinding } = require('@node-rs/helper');
 
 /**
  * __dirname means load native addon from current dir
@@ -8,4 +8,4 @@ const { loadBinding } = require('@node-rs/helper')
  * `loadBinding` helper will load `addon.[PLATFORM].node` from `__dirname` first
  * If failed to load addon, it will fallback to load from `addon-[PLATFORM]`
  */
-module.exports = loadBinding(__dirname, 'addon', 'addon')
+module.exports = loadBinding(__dirname, 'addon', 'addon');

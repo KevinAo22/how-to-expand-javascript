@@ -12,54 +12,53 @@ Performance comparison of WebAssembly based on Rust, N-API Addon based on Rust, 
 CPU Arch: x64
 CPU Info: Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
 Memory Info: 16GB
-Node version: v14.17.3
+Node version: v16.4.2
 AES decrypt for 128KB data:
-    Pure JavaScript x 61.94 ops/sec ±3.11% (65 runs sampled)
-    Node Crypto x 6,912 ops/sec ±2.91% (85 runs sampled)
-    WebAssembly x 438 ops/sec ±0.80% (87 runs sampled)
-    N-API Addon x 10,011 ops/sec ±0.77% (93 runs sampled)
+    Pure JavaScript x 56.16 ops/sec ±3.78% (60 runs sampled)
+    Node Crypto x 8,040 ops/sec ±1.02% (87 runs sampled)
+    WebAssembly x 435 ops/sec ±0.57% (91 runs sampled)
+    N-API Addon x 9,833 ops/sec ±0.46% (95 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 256KB data:
-    Pure JavaScript x 30.26 ops/sec ±2.38% (54 runs sampled)
-    Node Crypto x 4,315 ops/sec ±3.64% (90 runs sampled)
-    WebAssembly x 208 ops/sec ±0.81% (87 runs sampled)
-    N-API Addon x 4,935 ops/sec ±1.98% (83 runs sampled)
+    Pure JavaScript x 28.57 ops/sec ±3.48% (51 runs sampled)
+    Node Crypto x 4,214 ops/sec ±1.77% (83 runs sampled)
+    WebAssembly x 218 ops/sec ±0.48% (84 runs sampled)
+    N-API Addon x 5,125 ops/sec ±0.46% (68 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 384KB data:
-    Pure JavaScript x 20.09 ops/sec ±1.65% (37 runs sampled)
-    Node Crypto x 2,354 ops/sec ±0.35% (93 runs sampled)
-    WebAssembly x 140 ops/sec ±0.39% (79 runs sampled)
-    N-API Addon x 3,529 ops/sec ±1.05% (87 runs sampled)
+    Pure JavaScript x 18.50 ops/sec ±3.10% (35 runs sampled)
+    Node Crypto x 2,986 ops/sec ±1.01% (90 runs sampled)
+    WebAssembly x 146 ops/sec ±0.37% (82 runs sampled)
+    N-API Addon x 3,494 ops/sec ±0.49% (92 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 512KB data:
-    Pure JavaScript x 13.72 ops/sec ±2.73% (39 runs sampled)
-    Node Crypto x 1,898 ops/sec ±0.35% (79 runs sampled)
-    WebAssembly x 105 ops/sec ±0.38% (76 runs sampled)
-    N-API Addon x 2,723 ops/sec ±0.47% (71 runs sampled)
+    Pure JavaScript x 12.07 ops/sec ±5.23% (36 runs sampled)
+    Node Crypto x 2,230 ops/sec ±1.54% (86 runs sampled)
+    WebAssembly x 110 ops/sec ±0.36% (79 runs sampled)
+    N-API Addon x 2,659 ops/sec ±0.98% (90 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 640KB data:
-    Pure JavaScript x 11.43 ops/sec ±0.69% (32 runs sampled)
-    Node Crypto x 1,608 ops/sec ±0.47% (91 runs sampled)
-    WebAssembly x 84.38 ops/sec ±0.39% (72 runs sampled)
-    N-API Addon x 2,066 ops/sec ±1.14% (94 runs sampled)
+    Pure JavaScript x 10.19 ops/sec ±3.04% (30 runs sampled)
+    Node Crypto x 1,866 ops/sec ±1.22% (87 runs sampled)
+    WebAssembly x 88.10 ops/sec ±0.38% (75 runs sampled)
+    N-API Addon x 2,149 ops/sec ±1.12% (68 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 768KB data:
-    Pure JavaScript x 9.14 ops/sec ±1.20% (27 runs sampled)
-    Node Crypto x 1,987 ops/sec ±1.13% (91 runs sampled)
-    WebAssembly x 70.36 ops/sec ±0.52% (72 runs sampled)
-    N-API Addon x 2,543 ops/sec ±1.22% (92 runs sampled)
+    Pure JavaScript x 8.73 ops/sec ±1.22% (25 runs sampled)
+    Node Crypto x 1,656 ops/sec ±1.51% (87 runs sampled)
+    WebAssembly x 73.50 ops/sec ±0.42% (75 runs sampled)
+    N-API Addon x 1,851 ops/sec ±0.97% (64 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 896KB data:
-    Pure JavaScript x 8.06 ops/sec ±3.22% (25 runs sampled)
-    Node Crypto x 1,419 ops/sec ±0.30% (95 runs sampled)
-    WebAssembly x 60.02 ops/sec ±0.45% (62 runs sampled)
-    N-API Addon x 2,294 ops/sec ±3.31% (88 runs sampled)
+    Pure JavaScript x 7.33 ops/sec ±4.57% (23 runs sampled)
+    Node Crypto x 1,520 ops/sec ±1.49% (86 runs sampled)
+    WebAssembly x 62.75 ops/sec ±0.47% (65 runs sampled)
+    N-API Addon x 1,635 ops/sec ±1.17% (86 runs sampled)
   Fastest is N-API Addon
 AES decrypt for 1024KB data:
-    Pure JavaScript x 7.07 ops/sec ±0.34% (22 runs sampled)
-    Node Crypto x 2,197 ops/sec ±2.20% (94 runs sampled)
-    WebAssembly x 53.18 ops/sec ±0.39% (68 runs sampled)
-    N-API Addon x 1,867 ops/sec ±1.94% (87 runs sampled)
-  Fastest is Node Crypto
-✨  Done in 176.82s.
+    Pure JavaScript x 6.29 ops/sec ±4.30% (20 runs sampled)
+    Node Crypto x 1,300 ops/sec ±1.74% (85 runs sampled)
+    WebAssembly x 55.10 ops/sec ±0.48% (70 runs sampled)
+    N-API Addon x 1,513 ops/sec ±0.79% (76 runs sampled)
+  Fastest is N-API Addon
 ```

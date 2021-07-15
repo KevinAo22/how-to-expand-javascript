@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@node-rs/helper": "^1.1.0"
+    "@node-rs/helper": "^1.2.0"
   },
   "devDependencies": {
     "@napi-rs/cli": "^1.1.0"
@@ -23,9 +23,6 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
-    "build:debug": "napi build --platform",
-    "prepublishOnly": "napi prepublish -t npm",
-    "version": "napi version"
+    "build": "napi build --release"
   }
 }

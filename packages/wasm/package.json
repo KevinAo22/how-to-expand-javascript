@@ -6,7 +6,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "wasm-pack build --out-dir build/nodejs --target nodejs"
+    "build": "wasm-pack build --out-dir build/ --target nodejs"
   },
   "devDependencies": {
     "wasm-pack": "^0.10.0"

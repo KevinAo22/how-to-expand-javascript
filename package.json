@@ -12,6 +12,7 @@
   ],
   "author": "KevinAo22",
   "license": "MIT",
+  "private": "true",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KevinAo22/how-to-expand-javascript.git"
@@ -20,43 +21,52 @@
   "bugs": {
     "url": "https://github.com/KevinAo22/how-to-expand-javascript/issues"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "gypfile": true,
   "engines": {
     "node": ">=12"
   },
   "scripts": {
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "commit": "cz",
+    "lint": "eslint ./packages --config .eslintrc.yml --ignore-path .eslintignore --ext .ts",
+    "prettier": "prettier --write packages/ --config .prettierrc.json --ignore-path .prettierignore",
+    "build": "lerna run --stream --sort build",
     "benchmark": "node ./benchmark/benchmark.js"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-lerna-changelog"
     }
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.{js,ts}": [
       "eslint",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
       "prettier --write"
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/cli": "^13.0.0",
+    "@commitlint/config-conventional": "^13.0.0",
     "@types/node": "^16.3.2",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "benchmark": "^2.1.4",
     "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
+    "cz-lerna-changelog": "^2.0.3",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
-    "husky": "^7.0.0",
-    "lint-staged": "^11.0.0",
+    "husky": "^7.0.1",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   }

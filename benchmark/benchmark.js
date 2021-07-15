@@ -1,8 +1,8 @@
 const Benchmark = require('benchmark');
 const os = require('os');
-const nativeAES = require('../native/dist/aes');
-const wasmAES = require('../wasm/build/nodejs/wasm');
-const addonAES = require('../addon/addon.darwin-x64.node');
+const nativeAES = require('../packages/native/dist/aes');
+const wasmAES = require('../packages/wasm/build/wasm');
+const addonAES = require('../packages/addon/addon.node');
 
 const randomInRange = (max, min = 0) => Math.floor(Math.random() * (max - min + 1) + min);
 
