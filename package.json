@@ -30,7 +30,7 @@
     "lint": "eslint ./packages --config .eslintrc.yml --ignore-path .eslintignore --ext .ts",
     "prettier": "prettier --write packages/ --config .prettierrc.json --ignore-path .prettierignore",
     "build": "lerna run --stream --sort build",
-    "benchmark": "node ./benchmark/benchmark.js"
+    "benchmark:aes": "node ./benchmark/aes.js"
   },
   "workspaces": {
     "packages": [
