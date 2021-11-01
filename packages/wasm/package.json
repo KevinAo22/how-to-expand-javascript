@@ -9,6 +9,6 @@
     "build": "wasm-pack build --out-dir build/ --target nodejs"
   },
   "devDependencies": {
-    "wasm-pack": "^0.10.0"
+    "wasm-pack": "^0.10.1"
   }
 }

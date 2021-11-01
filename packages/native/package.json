@@ -12,10 +12,9 @@
     "build": "yarn clean && yarn compile"
   },
   "dependencies": {
-    "crypto-js": "^4.0.0"
+    "crypto-js": "^4.1.1"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.0.2",
-    "wasm-pack": "^0.10.0"
+    "@types/crypto-js": "^4.0.2"
   }
 }
